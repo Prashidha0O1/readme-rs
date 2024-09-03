@@ -115,9 +115,8 @@ fn file_factory(
         "This project is licensed under the {} license\n",
         license
     ));
-
     content.push_str("\n### Show your support\nLeave a ⭐ if you like this project\n");
-    content.push_str("\n***\nReadme made with 💖 using [README Generator](https://github.com/Prashidha0O1/readme-rs.git)");
+    content.push_str("\n***\nReadme made with 😭😭 using [README Generator](https://github.com/Prashidha0O1/readme-rs.git)");
 
     // Save the file
     file.write_all(content.as_bytes()).expect("Failed to write to file");
@@ -161,3 +160,21 @@ fn generate_usage_command() -> &'static str{
         "write use command here"
     }
 }
+
+fn create_license_badges() -> HashMap<&'static str, &'static str> {
+    let mut licenses = HashMap::new();
+    licenses.insert(
+        "mit",
+        "<img alt=\"License: MIT\" src=\"https://img.shields.io/badge/License-MIT-blue.svg\" />",
+    );
+    licenses.insert(
+        "apache",
+        "<img alt=\"License: Apache\" src=\"https://img.shields.io/badge/license-Apache%202-blue\" />",
+    );
+    licenses.insert(
+        "gpl",
+        "<img alt=\"License: GPL\" src=\"https://img.shields.io/badge/license-GPL-blue\" />",
+    );
+    licenses
+}
+
