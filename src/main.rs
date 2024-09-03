@@ -80,13 +80,14 @@ fn file_factory(
 
     // Handle license badge
     let licenses = create_license_badges(); // Get the predefined license badges
-    let binding = format!(
-            "<img alt=\"License: {}\" src=\"https://img.shields.io/badge/License-{}-blue\" />",
-            license, license
-        ).as_str();
+    let custom_badge = format!(
+        "<img alt=\"License: {}\" src=\"https://img.shields.io/badge/License-{}-blue\" />",
+        license, license
+    ); // Store the formatted string in a variable
     let license_badge = licenses
-        .get(&license.to_lowercase()[..]) // Check if provided license exists in the map
-        .unwrap_or(&binding); // If not, create a custom badge
+    .get(license.to_lowercase().as_str())
+    .map(|&s| s)
+    .unwrap_or(&custom_badge); // If not, create a custom badge
 
     content.push_str(license_badge);
     content.push_str("<br>\n<br>\n");
