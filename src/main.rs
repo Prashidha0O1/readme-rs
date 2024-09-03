@@ -123,3 +123,41 @@ fn file_factory(
     file.write_all(content.as_bytes()).expect("Failed to write to file");
 
 }
+
+fn generate_installation_instructions(project_name: &str)-> String{
+   let mut instructions = String::new();
+
+   if let Ok(repo_url) = Command::new("git").arg("remote").arg("get-url").arg("origin").output(){
+       instructions.push_str("```\n");
+       for line in String::from_utf8_lossy(&repo_url.stdout).lines(){
+           instructions.push_str(&format!("git clone {}\n", line));
+       }
+
+       instructions.push_str(&format!("cd {}", project_name));
+
+       if fs::metadata("Cargo.toml").is_ok(){
+           instructions.push_str("cargo install \n");
+       } else if fs::metadata("package.json").is_ok(){
+           instructions.push_str("npm install");
+       }  else if fs::metadata("requirements.txt").is_ok(){
+           instructions.push_str("pip install -r requirements.txt");
+       } 
+           instructions.push_str("```\n");
+   }
+   instructions
+}
+
+fn generate_usage_command() -> &'static str{
+    if fs:;metadata("Cargo.toml").is_ok(){
+        "cargo run"
+    } 
+    else if fs::metadata("package.json").is_ok(){
+        "npm start"
+
+    }
+    else if fs::metadata("requirements.txt").is_ok(){
+        "python3 main.py"
+    } else {
+        "write use command here"
+    }
+}
