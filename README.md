@@ -17,7 +17,7 @@ cargo install
 
 ### Usage
 ```
-your_executable_name --help
+readme-generator-rs --help
 ```
 
 ### Contributing
