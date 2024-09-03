@@ -20,7 +20,10 @@ cargo install
 readme-generator-rs --help
 ```
 
-### Contributing
+### Todo
+- add command-line argument parsing in your CLI tool
+- Add more checks for other popular project types (e.g., Java projects with `pom.xml` or Gradle).
+- Move the ASCII art to a separate function to clean up `main`.
 
 
 ### License
